@@ -9,6 +9,14 @@
 
 ### Installation
 
+The theme has been added to the official kitty themes repo. The simplest way to use the theme is by the kitty themes kitten and following the prompts.
+```
+kitty +kitten themes
+```
+
+
+#### Manual Installation
+
 Download the themes into your colors directory. This is normally `~/.config/kitty/themes` directory on a POSIX system.
 ```bash
 curl -L -o /tmp/yorumi-abyss https://raw.githubusercontent.com/yorumicolors/kitty/refs/heads/main/yorumi-abyss.conf
@@ -19,9 +27,7 @@ mkdir -p $HOME/.config/kitty/themes
 mv /tmp/yorumi-{abyss,mist,shade,kraken} $HOME/.config/kitty/themes
 ```
 
-You can then simply set the colorscheme on your `~/.config/kitty/kitty.conf` as
+You can then set the colorscheme on your `~/.config/kitty/kitty.conf` as
 ```conf
 include themes/yorumi-[abyss|mist|kraken|shade].conf
 ```
-
-follow the PR here: https://github.com/kovidgoyal/kitty-themes/pull/138
