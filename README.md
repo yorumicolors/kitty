@@ -23,3 +23,5 @@ You can then simply set the colorscheme on your `~/.config/kitty/kitty.conf` as
 ```conf
 include themes/yorumi-[abyss|mist|kraken|shade].conf
 ```
+
+follow the PR here: https://github.com/kovidgoyal/kitty-themes/pull/138
