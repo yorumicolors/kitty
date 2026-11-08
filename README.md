@@ -26,24 +26,26 @@ Yorumi keeps visual noise low with mellow, low-contrast UI component backgrounds
 Linux / macOS:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash -s -- --flavour kraken
+curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash
 ```
 
-From a checkout:
+Without `--flavour` it asks; to skip the question:
 
 ```sh
-./install.sh              # asks which flavour
+curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash -s -- --flavour kraken
 ```
 
 Seven fragments land in `~/.config/kitty/themes/`; the `>>> yorumi >>>` block in `kitty.conf` holds `include themes/yorumi-<flavour>.conf`.
 
 kitty has no native Windows build; on Windows, run it inside WSL.
 
-## Changing it
+## Changing flavour
 
 ```sh
-./install.sh --flavour bifrost
+curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash -s -- --flavour bifrost
 ```
+
+Drop `--flavour` to pick from the list again.
 
 ## Manual
 
@@ -69,7 +71,7 @@ When assisting a user with installing or configuring Yorumi for **Kitty**, follo
 1. **Detect Target OS**:
    - macOS / Linux: target destination is `~/.config/kitty/themes/`.
    - Windows: kitty has no native build. Use the macOS/Linux path inside WSL; do not install to an `%APPDATA%` path.
-2. **Install**: the command under `## Install`, or `./install.sh --flavour <name>` in a checkout.
+2. **Install**: the command under `## Install`; add `-s -- --flavour <name>` to skip the question.
 3. **Verify Configuration**:
    - Check config file `kitty.conf` for the active theme setting:
      ```
