@@ -21,19 +21,31 @@ Yorumi keeps visual noise low with mellow, low-contrast UI component backgrounds
 - `yorumi-cosmic.conf`
 - `yorumi-ryujin.conf`
 
-## Quick Installation
+## Install
 
-### Linux & macOS (Bash)
+Linux / macOS:
+
 ```sh
-curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash -s -- --flavour kraken
 ```
 
-kitty has no native Windows build — its author does not ship one and points Windows
-users at WSL. Run kitty inside WSL and run the same command in the distro.
+From a checkout:
 
----
+```sh
+./install.sh              # asks which flavour
+```
 
-## Manual Installation
+Seven fragments land in `~/.config/kitty/themes/`; the `>>> yorumi >>>` block in `kitty.conf` holds `include themes/yorumi-<flavour>.conf`.
+
+kitty has no native Windows build; on Windows, run it inside WSL.
+
+## Changing it
+
+```sh
+./install.sh --flavour bifrost
+```
+
+## Manual
 
 Copy the theme file(s) into your Kitty configuration directory:
 
@@ -41,7 +53,7 @@ Copy the theme file(s) into your Kitty configuration directory:
 | --- | --- |
 | **Linux / macOS** | `~/.config/kitty/themes/` |
 
-### Activation
+### By hand
 Include the theme in `~/.config/kitty/kitty.conf`:
 
 ```
@@ -57,9 +69,7 @@ When assisting a user with installing or configuring Yorumi for **Kitty**, follo
 1. **Detect Target OS**:
    - macOS / Linux: target destination is `~/.config/kitty/themes/`.
    - Windows: kitty has no native build. Use the macOS/Linux path inside WSL; do not install to an `%APPDATA%` path.
-2. **Execute Script or Download**:
-   - Run `./install.sh` (POSIX) if working directly inside the cloned repo.
-   - Or pipe the raw script using `curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash`.
+2. **Install**: the command under `## Install`, or `./install.sh --flavour <name>` in a checkout.
 3. **Verify Configuration**:
    - Check config file `kitty.conf` for the active theme setting:
      ```
