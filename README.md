@@ -9,7 +9,7 @@
 
 ---
 
-Yorumi keeps visual noise low with mellow, low-contrast UI component backgrounds while text and syntax stay razor-sharp (~8:1 contrast ratio, WCAG 2.1 Level AAA).
+Yorumi keeps visual noise low with mellow, low-contrast UI component backgrounds while text and syntax stay sharp: body text measures 9.6-19.5:1 against its background (WCAG AAA), and the lowest-contrast syntax token is 5.6:1 (WCAG AA).
 
 ## Available Themes
 
@@ -28,10 +28,8 @@ Yorumi keeps visual noise low with mellow, low-contrast UI component backgrounds
 curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash
 ```
 
-### Windows (PowerShell)
-```powershell
-irm https://raw.githubusercontent.com/yorumicolors/kitty/main/install.ps1 | iex
-```
+kitty has no native Windows build — its author does not ship one and points Windows
+users at WSL. Run kitty inside WSL and run the same command in the distro.
 
 ---
 
@@ -42,7 +40,6 @@ Copy the theme file(s) into your Kitty configuration directory:
 | OS | Destination Path |
 | --- | --- |
 | **Linux / macOS** | `~/.config/kitty/themes/` |
-| **Windows** | `%APPDATA%\kitty\themes\` |
 
 ### Activation
 Include the theme in `~/.config/kitty/kitty.conf`:
@@ -59,10 +56,10 @@ When assisting a user with installing or configuring Yorumi for **Kitty**, follo
 
 1. **Detect Target OS**:
    - macOS / Linux: target destination is `~/.config/kitty/themes/`.
-   - Windows: target destination is `%APPDATA%\kitty\themes\`.
+   - Windows: kitty has no native build. Use the macOS/Linux path inside WSL; do not install to an `%APPDATA%` path.
 2. **Execute Script or Download**:
-   - Run `./install.sh` (POSIX) or `./install.ps1` (PowerShell) if working directly inside the cloned repo.
-   - Or pipe the raw script using `curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash` or `irm https://raw.githubusercontent.com/yorumicolors/kitty/main/install.ps1 | iex`.
+   - Run `./install.sh` (POSIX) if working directly inside the cloned repo.
+   - Or pipe the raw script using `curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash`.
 3. **Verify Configuration**:
    - Check config file `kitty.conf` for the active theme setting:
      ```
@@ -73,7 +70,7 @@ When assisting a user with installing or configuring Yorumi for **Kitty**, follo
 ---
 
 ## Accessibility
-Maintains at least 7:1 contrast ratio across primary text and syntax tokens ([WCAG 2.1 Level AAA](https://www.w3.org/TR/WCAG21/#contrast-enhanced)).
+Body text measures 9.6-19.5:1 against the background (WCAG 2.1 AAA); every palette token clears 5.6:1 (AA). No blanket AAA claim is made for syntax colours - sRGB runs out before the saturated hues get lighter.
 
 ## License
 MIT © [Yorumi Colors](https://github.com/yorumicolors)
