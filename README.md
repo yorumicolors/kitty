@@ -35,7 +35,26 @@ Without `--flavour` it asks; to skip the question:
 curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash -s -- --flavour kraken
 ```
 
-Seven fragments land in `~/.config/kitty/themes/`; the `>>> yorumi >>>` block in `kitty.conf` holds an absolute `include` of the chosen fragment — `include ~/.config/kitty/themes/yorumi-<flavour>.conf` — so it still resolves when `--config` points at a config file somewhere else.
+Seven fragments land in `${XDG_CONFIG_HOME:-$HOME/.config}/kitty/themes/`; the `>>> yorumi >>>` block
+in `kitty.conf` holds an absolute `include` of the chosen fragment, so it still resolves when
+`--config` points at a config file somewhere else:
+
+```
+# >>> yorumi >>>
+include /home/you/.config/kitty/themes/yorumi-abyss.conf
+# <<< yorumi <<<
+```
+
+Both overrides are honoured:
+
+| setting | what it moves |
+|---|---|
+| `KITTY_CONFIG_DIRECTORY` | everything: `kitty.conf` and the `themes/` directory move with it |
+| `--config <path>` | only the config file the block is written into, and it wins over the directory-derived default; the fragments stay put |
+
+Kitty's own `KITTY_CONFIG_DIRECTORY` is used as-is, so an absolute path is what you want; with it
+unset the directory is `${XDG_CONFIG_HOME:-$HOME/.config}/kitty/`. `--no-activate` writes the
+fragments and leaves every config alone.
 
 kitty has no native Windows build; on Windows, run it inside WSL.
 
@@ -53,10 +72,11 @@ Copy the theme file(s) into your Kitty configuration directory:
 
 | OS | Destination Path |
 | --- | --- |
-| **Linux / macOS** | `~/.config/kitty/themes/` |
+| **Linux / macOS** | `${KITTY_CONFIG_DIRECTORY:-${XDG_CONFIG_HOME:-$HOME/.config}/kitty}/themes/` |
 
 ### By hand
-Include the theme in `~/.config/kitty/kitty.conf`:
+Include the theme in `kitty.conf` (beside `themes/`, under `KITTY_CONFIG_DIRECTORY` when you set
+it):
 
 ```
 include ~/.config/kitty/themes/yorumi-abyss.conf
@@ -69,15 +89,15 @@ include ~/.config/kitty/themes/yorumi-abyss.conf
 When assisting a user with installing or configuring Yorumi for **Kitty**, follow these deterministic steps:
 
 1. **Detect Target OS**:
-   - macOS / Linux: target destination is `~/.config/kitty/themes/`.
+   - macOS / Linux: target destination is `${KITTY_CONFIG_DIRECTORY:-${XDG_CONFIG_HOME:-$HOME/.config}/kitty}/themes/`.
    - Windows: kitty has no native build. Use the macOS/Linux path inside WSL; do not install to an `%APPDATA%` path.
 2. **Install**: the command under `## Install`; add `-s -- --flavour <name>` to skip the question.
 3. **Verify Configuration**:
-   - Check config file `kitty.conf` for the active theme setting:
+   - Check config file `kitty.conf` (under `$KITTY_CONFIG_DIRECTORY` when set) for the active theme setting:
      ```
      include ~/.config/kitty/themes/yorumi-abyss.conf
      ```
-   - Ensure the theme filename matches what is in `~/.config/kitty/themes/`.
+   - Ensure the theme filename matches what is in the `themes/` directory beside that config.
 
 ---
 
