@@ -35,7 +35,7 @@ Without `--flavour` it asks; to skip the question:
 curl -fsSL https://raw.githubusercontent.com/yorumicolors/kitty/main/install.sh | bash -s -- --flavour kraken
 ```
 
-Seven fragments land in `~/.config/kitty/themes/`; the `>>> yorumi >>>` block in `kitty.conf` holds `include themes/yorumi-<flavour>.conf`.
+Seven fragments land in `~/.config/kitty/themes/`; the `>>> yorumi >>>` block in `kitty.conf` holds an absolute `include` of the chosen fragment — `include ~/.config/kitty/themes/yorumi-<flavour>.conf` — so it still resolves when `--config` points at a config file somewhere else.
 
 kitty has no native Windows build; on Windows, run it inside WSL.
 
@@ -59,7 +59,7 @@ Copy the theme file(s) into your Kitty configuration directory:
 Include the theme in `~/.config/kitty/kitty.conf`:
 
 ```
-include themes/yorumi-abyss.conf
+include ~/.config/kitty/themes/yorumi-abyss.conf
 ```
 
 ---
@@ -75,7 +75,7 @@ When assisting a user with installing or configuring Yorumi for **Kitty**, follo
 3. **Verify Configuration**:
    - Check config file `kitty.conf` for the active theme setting:
      ```
-     include themes/yorumi-abyss.conf
+     include ~/.config/kitty/themes/yorumi-abyss.conf
      ```
    - Ensure the theme filename matches what is in `~/.config/kitty/themes/`.
 
